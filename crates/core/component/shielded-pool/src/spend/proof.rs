@@ -141,6 +141,12 @@ pub struct SpendCircuit {
     private: SpendProofPrivate,
 }
 
+impl SpendCircuit {
+    pub fn new(public: SpendProofPublic, private: SpendProofPrivate) -> Self {
+        Self { public, private }
+    }
+}
+
 impl ConstraintSynthesizer<Fq> for SpendCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fq>) -> ark_relations::r1cs::Result<()> {
         // Witnesses

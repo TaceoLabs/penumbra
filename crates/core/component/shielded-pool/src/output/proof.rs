@@ -103,7 +103,7 @@ pub struct OutputCircuit {
 }
 
 impl OutputCircuit {
-    fn new(public: OutputProofPublic, private: OutputProofPrivate) -> Self {
+    pub fn new(public: OutputProofPublic, private: OutputProofPrivate) -> Self {
         Self { public, private }
     }
 }

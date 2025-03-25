@@ -147,6 +147,12 @@ pub struct DelegatorVoteCircuit {
     private: DelegatorVoteProofPrivate,
 }
 
+impl DelegatorVoteCircuit {
+    pub fn new(public: DelegatorVoteProofPublic, private: DelegatorVoteProofPrivate) -> Self {
+        Self { public, private }
+    }
+}
+
 impl ConstraintSynthesizer<Fq> for DelegatorVoteCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fq>) -> ark_relations::r1cs::Result<()> {
         // Witnesses
