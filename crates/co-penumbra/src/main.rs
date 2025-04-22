@@ -75,15 +75,8 @@ pub fn serialize_witness_and_matrices(
     }
 
     let matrices = cs.to_matrices().expect("can gen matrices");
-    // TODO once we can serde ConstraintMatrices, we dont need to do this anymore
-    // let matrices_file = File::create("matrices.bin")?;
-    // matrices.serialize_uncompressed(matrices_file)?;
-    let a = File::create("a.bin")?;
-    let b = File::create("b.bin")?;
-    let c = File::create("c.bin")?;
-    matrices.a.serialize_uncompressed(a)?;
-    matrices.b.serialize_uncompressed(b)?;
-    matrices.c.serialize_uncompressed(c)?;
+    let matrices_file = File::create("matrices.bin")?;
+    (matrices.a, matrices.b, matrices.c).serialize_uncompressed(matrices_file)?;
 
     Ok(())
 }
@@ -226,8 +219,8 @@ fn setup_delegator_vote() -> anyhow::Result<DelegatorVoteCircuit> {
 }
 
 fn main() -> anyhow::Result<()> {
-    // serialize_witness_and_matrices(setup_spend()?)?;
+    serialize_witness_and_matrices(setup_spend()?)?;
     // serialize_witness_and_matrices(setup_output()?)?;
-    serialize_witness_and_matrices(setup_delegator_vote()?)?;
+    // serialize_witness_and_matrices(setup_delegator_vote()?)?;
     Ok(())
 }
