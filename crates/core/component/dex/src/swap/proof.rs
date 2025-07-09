@@ -102,6 +102,12 @@ pub struct SwapCircuit {
     private: SwapProofPrivate,
 }
 
+impl SwapCircuit {
+    pub fn new(public: SwapProofPublic, private: SwapProofPrivate) -> Self {
+        Self { public, private }
+    }
+}
+
 impl ConstraintSynthesizer<Fq> for SwapCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fq>) -> ark_relations::r1cs::Result<()> {
         // Witnesses

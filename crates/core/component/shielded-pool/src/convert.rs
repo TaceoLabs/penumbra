@@ -98,7 +98,7 @@ pub struct ConvertCircuit {
 }
 
 impl ConvertCircuit {
-    fn new(
+    pub fn new(
         ConvertProofPublic {
             from,
             to,

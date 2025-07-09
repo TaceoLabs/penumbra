@@ -85,6 +85,15 @@ pub struct NullifierDerivationCircuit {
     private: NullifierDerivationProofPrivate,
 }
 
+impl NullifierDerivationCircuit {
+    pub fn new(
+        public: NullifierDerivationProofPublic,
+        private: NullifierDerivationProofPrivate,
+    ) -> Self {
+        Self { public, private }
+    }
+}
+
 impl ConstraintSynthesizer<Fq> for NullifierDerivationCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fq>) -> ark_relations::r1cs::Result<()> {
         // Witnesses
