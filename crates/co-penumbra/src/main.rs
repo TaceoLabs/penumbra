@@ -101,7 +101,11 @@ pub fn serialize_witness_and_matrices(
     }
 
     let matrices = cs.to_matrices().expect("can gen matrices");
-    println!("circuit degree = {}", circuit_degree(&matrices)?.ilog2());
+    println!(
+        "circuit degree = {} num_inputs = {}",
+        circuit_degree(&matrices)?.ilog2(),
+        matrices.num_instance_variables
+    );
 
     let matrices_file = File::create("matrices.bin")?;
     (matrices.a, matrices.b, matrices.c).serialize_uncompressed(matrices_file)?;
